@@ -1,0 +1,136 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-color: #13110f;
+    color: #ffffff;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    font: 20px Dosis, sans-serif;
+}
+
+a {
+    color: #89f78f;
+}
+
+a.active {
+    color: #ffffff;
+}
+
+blockquote {
+    margin: 0;
+    padding: 0 20px;
+    border-left: 2px solid #fff3;
+}
+
+#map {
+    flex-grow: 1;
+    align-self: stretch;
+}
+
+#information {
+    width: 500px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+#information h1 {
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    body {
+        display: block;
+    }
+
+    #map {
+        height: 75%;
+        width: 100%;
+    }
+
+
+    #information {
+        width: 100%;
+        padding-top: 0;
+        flex-grow: 1;
+    }
+}
+
+.leaflet-control-custom img {
+    width: 20px;
+    height: 20px;
+    margin-top: calc(50% - 20px/2);
+}
+
+/* .leaflet-control-locate img {} */
+
+.leaflet-control-find-zones {
+    background-color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-family: Dosis, sans-serif;
+    box-sizing: content-box;
+    padding: 0 8px;
+    transition: 200ms ease-in-out color;
+}
+
+.leaflet-control-find-zones:hover {
+    color: rgb(116, 167, 144);
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(0deg);
+    }
+
+    40% {
+        transform: rotate(5deg);
+    }
+
+    60% {
+        transform: rotate(-5deg);
+    }
+
+    80% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.leaflet-control-find-zones img {
+    transition: 200ms ease-in-out filter, 200ms ease-in-out scale;
+    translate: 0 -2px;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-right: 4px;
+    height: 24px;
+}
+
+.leaflet-control-find-zones:hover img {
+    scale: 1.2;
+    filter: invert(50%) sepia(100%) hue-rotate(100deg);
+    animation: wiggle 1s ease-in-out infinite;
+}
+
+
+.leaflet-layer-ping {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    animation: pulse 1s infinite;
+}

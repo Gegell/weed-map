@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weed Map</title>
+	<link rel="stylesheet" href="style.css" />
+	<!-- Font: Dosis - Currently just a Google Font, should be replaced with a local font if published -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+	<!-- leaflet.js -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	<!-- turf.js -->
+	<script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+</head>
+
+<body>
+	<div id="map"></div>
+	<div id="information">
+		<h1>Cannabis-Konsumskarte</h1>
+		<p>
+			Diese Karte zeigt die Bereiche in denen der <em>öffentliche</em> Konsum von Cannabis laut dem neusten Cannabisgesetzesentwurf verboten ist.
+			Insbesondere ist das ein Bereich von 200 Meter Radius um <em>Schulen</em>,
+			<em>Kinderspielplätze</em>, <em>Kinder- und Jugendeinrichtungen</em>, <em>öffentliche Sportstätten</em>,
+			<em>Anbauvereinigungen</em>.
+		</p>
+		<p>
+			Diese Karte zeigt interaktiv die Bereiche welche sich innerhalb des oben genannten Radius von 200 Metern befinden.
+			Sie kann per <em>Drag & Drop</em> verschoben werden und per <em>scrollen</em> gezoomt werden.
+			Wenn man sich über den sichtbaren Bereich informieren will, so betätigt man den Knopf <em>"Bereiche anzeigen"</em>.
+		</p>
+		<p>
+			<a href="https://dserver.bundestag.de/btd/20/087/2008704.pdf">Gesetzesentwurf</a>
+			vom 9.10.2023
+			<blockquote>
+			<h3>Cannabisgesetz - CanG &mdash; §5 Abs. 2:</h3>
+			(2) Der öffentliche Konsum von Cannabis ist verboten:
+			<ol>
+				<li>in Schulen und in einem Bereich von <em>200 Metern</em> um den Eingangsbereich von Schulen,</li>
+				<li>auf Kinderspielplätzen und in einem Bereich von <em>200 Metern</em> um den Eingangsbereich von
+					Kinderspielplätzen,</li>
+				<li>in Kinder- und Jugendeinrichtungen und in einem Bereich von <em>200 Metern</em> um den
+					Eingangsbereich von
+					Kinder- und Jugendeinrichtungen,</li>
+				<li>in öffentlich zugänglichen Sportstätten,</li>
+				<li>in Fußgängerzonen zwischen 7 und 20 Uhr und</li>
+				<li>innerhalb des befriedeten Besitztums von Anbauvereinigungen und in einem Bereich von <em>200
+						Metern</em> um den Eingangsbereich von Anbauvereinigungen.</li>
+			</ol>
+		</blockquote>
+		</p>
+		<p>
+			Notiz: Um die relevanten Bereiche zu berechnen werden ortsdaten an die <a href="https://overpass-turbo.eu/">Overpass API</a> übermittelt. Dies ist ein Service der OpenStreetMap Foundation.
+		</p>
+	</div>
+	<script src="script.js"></script>
+</body>
+
+</html>
