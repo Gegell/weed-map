@@ -1,8 +1,9 @@
-const default_location = [51.505, -0.09];
+// Default to Bundestag in Berlin
+const default_location = [52.518611, 13.376111];
 const default_zoom = 13;
 
 var last_known_location = default_location;
-var last_location = null;
+var last_location = default_location;
 var last_zoom = default_zoom;
 // Read from local storage
 if (localStorage.getItem('last_known_location')) {
