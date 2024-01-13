@@ -310,3 +310,15 @@ L.Control.FindZones = L.Control.extend({
 });
 L.control.findZones = (opts) => new L.Control.FindZones(opts);
 L.control.findZones({ position: 'topright' }).addTo(map);
+
+/*
+ * Scroll detection to make map smaller in vertical display mode when information is scrolled in.
+ */
+
+toggleInformation = () => {
+    let map_element = document.getElementById('map');
+    let state = map_element.classList.toggle('small');
+    let expand_icon = document.getElementById('info-expand')
+    expand_icon.classList.toggle('open', state);
+}
+

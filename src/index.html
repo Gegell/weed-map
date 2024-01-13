@@ -22,7 +22,14 @@
 <body>
 	<div id="map"></div>
 	<div id="information">
-		<h1>Cannabis-Konsumskarte</h1>
+		<div id="header">
+			<button id="info-expand" class="expand" onclick="toggleInformation()">
+				<svg>
+					<use href="icons/arrow-down-s-line.svg#arrow-down-s-line"></use>
+				</svg>
+			</button>
+			<h1>Cannabis-Konsumskarte</h1>
+		</div>
 		<p>
 			Diese Karte zeigt die Bereiche in denen der <em>öffentliche</em> Konsum von Cannabis laut dem neusten Cannabisgesetzesentwurf verboten ist.
 			Insbesondere ist das ein Bereich von 200 Meter Radius um <em>Schulen</em>,

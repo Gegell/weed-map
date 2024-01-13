@@ -9,7 +9,7 @@ body {
 
 body {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     font: 20px Dosis, sans-serif;
 }
 
@@ -42,21 +42,64 @@ blockquote {
     text-align: center;
 }
 
+.expand {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 400ms ease-in-out transform;
+    transform: rotate(-90deg);
+}
+
+.expand.open {
+    transform: rotate(00deg);
+}
+
+#info-expand {
+    display: none;
+}
+
 @media (max-width: 1200px) {
     body {
-        display: block;
+        flex-direction: column;
     }
 
     #map {
-        height: 75%;
+        flex: 0 1 75%;
         width: 100%;
+        transition: 300ms ease-in-out flex-basis;
     }
 
+    #map.small {
+        flex-basis: 25%;
+    }
 
     #information {
+        flex: 1 1;
         width: 100%;
-        padding-top: 0;
+        overflow-y: scroll;
+    }
+
+    #information > #header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #information > #header > h1 {
+        margin: 0;
         flex-grow: 1;
+    }
+
+    #info-expand {
+        display: flex;
     }
 }
 
