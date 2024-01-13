@@ -203,11 +203,34 @@ function getTurfObjectsFromEntities(entities) {
 }
 
 function getNogoZoneFromEntities(entities) {
+    let recursive_union = (objects) => {
+        if (objects.length == 1) {
+            return objects[0];
+        } else {
+            let middle = Math.floor(objects.length / 2);
+            let left = recursive_union(objects.slice(0, middle));
+            let right = recursive_union(objects.slice(middle));
+            // It can sometimes happen that when we merge an individual object with a polygon,
+            // that the union errors (overlapping boundary?) -> catch and return the individual object
+            try {
+                return turf.union(left, right);
+            } catch (e) {
+                // console.log("Error while merging objects, fallback to linear reduction, disregarding bad ones.");
+                return objects.slice(middle).reduce((acc, obj) => {
+                    try {
+                        return turf.union(acc, obj);
+                    } catch (e) {
+                        return acc;
+                    }
+                }, left);
+            }
+        }
+    }
+
     // Create a buffer around each entity
     turf_objects = getTurfObjectsFromEntities(entities);
-    buffers = turf_objects.map(turf_object => turf.buffer(turf_object, 200, { units: 'meters' }));
-    return buffers.reduce((acc, buffer) => turf.union(acc, buffer), buffers[0]);
-
+    buffers = turf_objects.map(obj => turf.buffer(obj, 200, { units: 'meters' }));
+    return recursive_union(buffers);
 }
 
 function drawEntities(layer, entities) {
