@@ -159,6 +159,11 @@ L.control.locate({ position: 'topleft' }).addTo(map);
  */
 
 async function getNogoEntitiesInBbox(bbox) {
+    // Increase bbox size by 200m to account for the buffer
+    turf_bbox = turf.bboxPolygon([bbox.getWest(), bbox.getSouth(), bbox.getEast(), bbox.getNorth()]);
+    turf_bbox = turf.bbox(turf.buffer(turf_bbox, 200, { units: 'meters' }));
+    bbox = L.latLngBounds([turf_bbox[1], turf_bbox[0]], [turf_bbox[3], turf_bbox[2]]);
+
     // Get all the nodes in the bbox that are tagged as nogo
     const bbox_str = [bbox.getSouth(), bbox.getWest(), bbox.getNorth(), bbox.getEast()].join(',');
     const query = `[out:json][timeout:10][bbox:${bbox_str}];
