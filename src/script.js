@@ -237,14 +237,35 @@ function drawEntities(layer, entities) {
         fillColor: '#f93',
         fillOpacity: 0.5,
     };
+    console.log(entities);
+
+    const popup_text = (entity) => {
+        let addr_text = null;
+        if (entity.tags['addr:street'] && entity.tags['addr:housenumber']) {
+            addr_text = `${entity.tags['addr:street']} ${entity.tags['addr:housenumber']}`;
+        }
+
+        let tag_table_entries = Object.entries(entity.tags)
+            .map(([key, value]) => `<tr><td>${key}</td><td>${value}</td></tr>`)
+            .join('');
+        let tag_table_header = '<tr><th>Key</th><th>Value</th></tr>';
+        let tag_table = `<table>${tag_table_header}${tag_table_entries}</table>`;
+        let name = entity.tags.name
+            ?? entity.tags.ref
+            ?? addr_text
+            ?? `${entity.type} ${entity.id}`;
+        return `<h3>${name}</h3>${tag_table}`;
+    }
 
     for (let entity of entities) {
         if (entity.type == 'node') {
             let options = { ...shared_style, radius: 5 };
-            L.circle([entity.lat, entity.lon], options).addTo(layer);
+            L.circle([entity.lat, entity.lon], options).addTo(layer)
+                .bindPopup(popup_text(entity));
         } else if (entity.type == 'way') {
             let coordinates = entity.geometry.map(node => [node.lat, node.lon]);
-            L.polygon(coordinates, shared_style).addTo(layer);
+            L.polygon(coordinates, shared_style).addTo(layer)
+                .bindPopup(popup_text(entity));
         } else if (entity.type == 'relation' && entity.tags.type == 'multipolygon') {
             entity.members
                 .filter(member => member.type == 'way')
@@ -285,7 +306,7 @@ L.Control.FindZones = L.Control.extend({
         btn.onclick = async () => {
             // Show loading indicator
             btn.classList.add('active');
-            
+
             // Actually query the API
             let bbox = map.getBounds();
             let entities = await getNogoEntitiesInBbox(bbox);
