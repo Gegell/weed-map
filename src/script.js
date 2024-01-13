@@ -39,6 +39,18 @@ function onLocationError(e) {
 function onZoomEnd(e) {
     const zoom = e.target._zoom;
     localStorage.setItem('last_known_zoom', JSON.stringify(zoom));
+
+    // If the user zooms out too far, disable the calculate zones button
+    let btn = document.querySelector('.leaflet-control-find-zones');
+    btn.disabled = zoom < 14;
+    let label = btn.querySelector('span');
+    let icon = btn.querySelector('img');
+    icon.hidden = btn.disabled;
+    if (btn.disabled) {
+        label.innerHTML = 'Zoomen Sie näher heran';
+    } else {
+        label.innerHTML = 'Bereiche anzeigen';
+    }
 }
 
 function onMoveEnd(e) {
