@@ -94,17 +94,6 @@ function pingLocation(map, latlng, radius) {
     }, animation_duration);
 }
 
-function drawZones(map, zones) {
-    for (let zone of zones) {
-        L.circle(zone, {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: zone.radius,
-        }).addTo(map);
-    }
-}
-
 makeButtonContainer = () => {
     let container = L.DomUtil.create('div');
     container.classList.add('leaflet-bar');
