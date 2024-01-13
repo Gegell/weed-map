@@ -124,7 +124,7 @@ blockquote {
     transition: 200ms ease-in-out color;
 }
 
-.leaflet-control-find-zones:hover {
+.leaflet-control-find-zones.active {
     color: rgb(116, 167, 144);
 }
 
@@ -163,10 +163,23 @@ blockquote {
     height: 24px;
 }
 
-.leaflet-control-find-zones:hover img {
-    scale: 1.2;
+.leaflet-control-find-zones.active img {
     filter: invert(50%) sepia(100%) hue-rotate(100deg);
+    scale: 1.2;
     animation: wiggle 1s ease-in-out infinite;
+}
+
+/* Touch media query */
+@media (hover: hover) {
+    .leaflet-control-find-zones:hover {
+        /* Same as active color */
+        color: rgb(116, 167, 144);
+    }
+
+    .leaflet-control-find-zones:hover img {
+        /* Same as active color */
+        filter: invert(50%) sepia(100%) hue-rotate(100deg);
+    }
 }
 
 

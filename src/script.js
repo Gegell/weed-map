@@ -294,12 +294,19 @@ L.Control.FindZones = L.Control.extend({
         txt_label.innerHTML = text;
         btn.appendChild(txt_label);
         btn.onclick = async () => {
+            // Show loading indicator
+            btn.classList.add('active');
+            
+            // Actually query the API
             let bbox = map.getBounds();
             let entities = await getNogoEntitiesInBbox(bbox);
             let zone = getNogoZoneFromEntities(entities);
             zoneLayer.clearLayers();
             drawZone(zoneLayer, zone);
             drawEntities(zoneLayer, entities);
+
+            // Remove loading indicator
+            btn.classList.remove('active');
         };
         btn.classList.add('leaflet-control-find-zones');
         return btn
