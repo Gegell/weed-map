@@ -33,6 +33,7 @@ function onLocationError(e) {
         last_location = JSON.parse(localStorage.getItem('last_location'));
     }
 
+    map.setView(last_location, 16);
     pingLocation(map, last_location, 10);
 }
 
@@ -66,8 +67,6 @@ smoothStep = (x, a, b) => {
 }
 
 function pingLocation(map, latlng, radius) {
-    map.setView(latlng, last_zoom);
-
     // Add a ping on the map at the user's location which will fade out in 4 seconds
     let ping = L.circle(latlng, radius, {
         opacity: 0,
@@ -141,7 +140,12 @@ L.Control.Locate = L.Control.extend({
     onAdd: function (map) {
         let container = makeButtonContainer();
         let btn = makeButton(container, 'Locate me', 'focus-3-line.svg');
-        btn.onclick = () => map.locate({ maximumAge: 10000, timeout: 1000 });
+        btn.onclick = () => map.locate({
+            maximumAge: 10000,
+            timeout: 1000,
+            maxZoom: 16,
+            setView: true,
+        });
         btn.classList.add('leaflet-control-locate');
         return container
     },
