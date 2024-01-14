@@ -176,7 +176,6 @@ async function getNogoEntitiesInBbox(bbox) {
             body: "data=" + encodeURIComponent(query),
         },
     ).then(response => response.json());
-    console.log(result);
     return result.elements;
 }
 
@@ -237,7 +236,6 @@ function drawEntities(layer, entities) {
         fillColor: '#f93',
         fillOpacity: 0.5,
     };
-    console.log(entities);
 
     const popup_text = (entity) => {
         if (!entity.tags) {
