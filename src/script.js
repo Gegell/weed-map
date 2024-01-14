@@ -240,6 +240,9 @@ function drawEntities(layer, entities) {
     console.log(entities);
 
     const popup_text = (entity) => {
+        if (!entity.tags) {
+            return `<h3>${entity.type} ${entity.id}</h3>`;
+        }
         let addr_text = null;
         if (entity.tags['addr:street'] && entity.tags['addr:housenumber']) {
             addr_text = `${entity.tags['addr:street']} ${entity.tags['addr:housenumber']}`;
