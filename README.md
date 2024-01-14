@@ -1,15 +1,15 @@
 # Weed Map
-This is the repository to a small js website powered by
+This is the repository to a small raw js website powered by
 - [Leaflet](https://leafletjs.com/) for map rendering,
 - [OpenStreetMap](https://www.openstreetmap.org/) for map data,
 - [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) to query the map data
 - [Turf.js](https://turfjs.org/) for geospatial analysis (buffer creation)
 - [remixicon](https://remixicon.com/) for icons
 
-It shows the location on where public consumption of cannabis will be tolerated in Germany.
-This attempts to be in accordance with the newly proposed law found [here](https://dserver.bundestag.de/btd/20/087/2008704.pdf).
+It tries to visualize the location on where public consumption of cannabis will (not) be tolerated in Germany.
+This map attempts to be in accordance with the newly proposed law found [here](https://dserver.bundestag.de/btd/20/087/2008704.pdf), however, as IANAL, I cannot guarantee lawful accuracy.
 
-The main point visualized here are the restrictions put in place by *§5 Konsumverbot (2) Paragraph* of the proposed law:
+The main point shown by the map are the restrictions put in place by *§5 Konsumverbot (2) Paragraph* of the proposed law:
 
 > # §5 Konsumverbot
 > (1) Der Konsum von Cannabis in unmittelbarer Gegenwart von Personen, die das 18. Lebensjahr noch nicht
